@@ -1,3 +1,2 @@
-# Get Started!
-
-Add files and start typing 🎉
+# nebula-embed-example
+Created with CodeSandbox

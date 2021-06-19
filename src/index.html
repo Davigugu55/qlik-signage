@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Native Qlik Sense in a web page</title>
+    <link rel="stylesheet" href="/style.css" />
+
+    <script src="https://unpkg.com/enigma.js@2.7.2/enigma.min.js"></script>
+    <script src="https://unpkg.com/@nebula.js/stardust@1.1.1"></script>
+    <script src="https://unpkg.com/@nebula.js/sn-mekko-chart@1.0.4"></script>
+    <script src="https://unpkg.com/@nebula.js/sn-bar-chart"></script>
+
+    <!-- import the webpage's javascript file -->
+    <!-- <script src="/script.js" defer></script> -->
+    <style>
+      .object {
+        position: relative;
+        display: inline-block;
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="curr-selections"></div>
+    <div id="mekko" class="object"></div>
+    <div id="bar" class="object"></div>
+    <script src="/index.js"></script>
+  </body>
+</html>
