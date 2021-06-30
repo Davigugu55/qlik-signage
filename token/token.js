@@ -32,12 +32,6 @@ const methods = {
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
     return token;
-  },
-  getKey: () => {
-    let key1 = process.env.PRIVATE_KEY;
-    //key = key.replace(/\\n/gm, "\n");
-    console.log(key1);
-    console.log(key);
   }
 };
 
