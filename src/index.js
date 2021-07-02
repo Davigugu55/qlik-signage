@@ -1,4 +1,6 @@
 (async () => {
+  /********BE CAREFUL WHAT YOU DELETE BELOW THIS LINE********/
+  
   // Get the configuration information from the config.js file
   const config = await await fetch("config").then((response) =>
     response.json()
@@ -51,6 +53,8 @@
   // Open the application
   const app = await (await session.open()).openDoc(config.appId);
 
+  /********BE CAREFUL WHAT YOU DELETE ABOVE THIS LINE********/
+  
   const themeFile = await await fetch("theme/horizon").then((response) =>
     response.json()
   );
