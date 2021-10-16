@@ -19,8 +19,8 @@ app.get("/config", (req, res) => {
 });
 
 app.get("/token", (req, res) => {
-  const ip = req.connection.remoteAddress;
-  const genT = token.generate(ip, config.tenantDomain);
+  
+  const genT = token.generate();
   res.json({ token: genT });
 });
 
