@@ -3,6 +3,7 @@ const app = express();
 const fs = require("fs");
 const config = require("../config/config");
 const token = require("../token/token");
+const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
 //console.log(token.getKey());
@@ -19,8 +20,13 @@ app.get("/config", (req, res) => {
 });
 
 app.get("/token", (req, res) => {
+  const uuid = uuidv4();
+  const sub = `${process.env.userStub}_${uuid}`;
+  const name = sub;
+  const email = `${uuid}@anonymoususer.anon`;
+  const groups = [process.env.group];
   
-  const genT = token.generate();
+  const genT = token.generate(sub, name, email, groups);
   res.json({ token: genT });
 });
 
