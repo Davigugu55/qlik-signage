@@ -3,7 +3,7 @@ import { configuration } from './configuration.js'
 
 (async () => {
 
-  const { app, config, csrfTokenInfo } =  await auth()
+  const { app, rest } =  await auth()
   
   // create renderer
   const renderer = window.stardust.embed(app, configuration);
@@ -21,10 +21,6 @@ import { configuration } from './configuration.js'
       subtitle: "This example shows data fetched from a Qlik app rendered as a bar chart using Nebula."
     }
   });
-  
-  const rest = await fetch(`https://${config.tenantDomain}/users/me
-  ?qlik-web-integration-id=${config.qlikWebIntegrationId}
-  &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`).then(resp => resp.json());
   
   document.querySelector("#rest").innerHTML = rest;
   
