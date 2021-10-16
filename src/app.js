@@ -22,6 +22,8 @@ import { configuration } from './configuration.js'
     }
   });
   
+  const rest = await fetch(`https://${config.tenantDomain}/users/me?
+    qlik-web-integration-id=${config.qlikWebIntegrationId}&qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`)
   
   
 })();
