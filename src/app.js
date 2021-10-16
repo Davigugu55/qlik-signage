@@ -3,7 +3,7 @@ import { configuration } from './configuration.js'
 
 (async () => {
 
-  const { app } =  await auth()
+  const { app, config, csrfTokenInfo } =  await auth()
   
   // create renderer
   const renderer = window.stardust.embed(app, configuration);
@@ -21,5 +21,7 @@ import { configuration } from './configuration.js'
       subtitle: "This example shows data fetched from a Qlik app rendered as a bar chart using Nebula."
     }
   });
+  
+  
   
 })();

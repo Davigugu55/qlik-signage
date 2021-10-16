@@ -5,7 +5,7 @@ export const auth = async () => {
   
   // 1) get config
   const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await (await fetch("config").then((resp) => resp.json()));
-  
+  const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
   // 2) get logged in
   if(currentLoginType === loginTypes.JWT_LOGIN) handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
@@ -77,5 +77,5 @@ export const auth = async () => {
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
   
-  return { app }
+  return { app, config, csrfTokenInfo}
 }
