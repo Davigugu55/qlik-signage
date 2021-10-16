@@ -22,11 +22,11 @@ import { configuration } from './configuration.js'
     }
   });
   
-  const rest = await (await fetch(`https://${config.tenantDomain}/users/me
+  const rest = await fetch(`https://${config.tenantDomain}/users/me
   ?qlik-web-integration-id=${config.qlikWebIntegrationId}
-  &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`).then(resp => resp.json()));
+  &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`).then(resp => resp.json());
   
-  document.querySelector("#rest").innerHTML= rest;
+  document.querySelector("#rest").innerHTML = rest;
   
   
 })();
