@@ -77,15 +77,7 @@ export const auth = async () => {
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
   
-  let rest = await (await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
-  {
-    credentials: "include",
-      headers: {
-        "Qlik-Web-Integration-ID": qlikWebIntegrationId
-      }
-  })).json();
   
-  rest = JSON.stringify(rest, null, 4);
   
-  return { app, rest}
+  return { app, config, csrfTokenInfo}
 }
