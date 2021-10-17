@@ -1,7 +1,6 @@
 import { auth } from './auth.js'
 import { configuration } from './configuration.js'
 import { connectQlikApp } from './connectQlikApp.js'
-import { connectIframe } from './connectIframe.js'
 
 (async () => {
 
@@ -27,11 +26,16 @@ import { connectIframe } from './connectIframe.js'
   });
   
   //embed chart using single API iframe
-  const iframeSrc = connectIframe(config, csrfTokenInfo);
+  let iframeSrc = `https://${config.tenantDomain}/single/?appid=${config.appId}&obj=Tsmvffe&opt=ctxmenu,currsel
+  &qlik-web-integration-id=${config.qlikWebIntegrationId}
+  &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`;
+  
   let iframe = document.createElement("iframe");
   iframe.src = iframeSrc
+  
   document.querySelector("#iframe").appendChild(iframe)
   
+  //embed response from a REST API
   let rest = await (await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
   {
     credentials: "include",
