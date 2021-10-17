@@ -7,10 +7,10 @@ import { connectQlikApp } from './connectQlikApp.js'
   const { config, csrfTokenInfo } =  await auth()
   
   //Embed chart using Nebula.js
+  // connect to a Qlik Sense application
   const { app } = await connectQlikApp(config, csrfTokenInfo)
   // create renderer
   const renderer = window.stardust.embed(app, configuration);
-
   // render toolbar
   (await renderer.selections()).mount(document.querySelector(".toolbar"));
   
