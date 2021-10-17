@@ -22,5 +22,16 @@ If you are developing apps that integrate analytics, this sample is going to acc
 
 Upon implementing JWT authorization to Qlik, there are a number of ways to add embedded content:
 
-* JavaScript embedded visulization using nebula.js
-* 
+* JavaScript embedded visualization using nebula.js
+* iframe embedded visualization using the single API
+* Connect to REST endpoints when you need to in your web application front-end
+
+### User Work Flow
+
+When you add authorization to Qlik using JWTs the goal is to abstract away the login experience to a Qlik Cloud tenant.
+As a developer the last thing you want is to have an end user redirected to an interactive login
+when the solution is embedded. JWT authorization enables users to have a seamless experience with embedded Qlik content.
+
+## Setup
+
+### Qlik Cloud tenant
