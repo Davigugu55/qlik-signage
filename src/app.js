@@ -32,7 +32,7 @@ import { connectQlikApp } from './connectQlikApp.js'
   
   let iframe = document.createElement("iframe");
   iframe.src = iframeSrc;
-  iframe.classList.add("iframe-style");
+  iframe.classList.add("iframeStyle");
   document.querySelector("#iframe").appendChild(iframe);
   
   //embed response from a REST API

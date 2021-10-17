@@ -54,3 +54,18 @@ pre code {
   padding: 0;
   word-break: break-all;
 }
+
+.iframeStyle {
+  position: relative;
+  display: inline-block;
+  height: 400px;
+  width: 100%;
+}
+
+.headerFont {
+  font-family: "source sans pro"
+}
+
+.divBorder {
+  border-bottom: 3px solid #009845;
+}
