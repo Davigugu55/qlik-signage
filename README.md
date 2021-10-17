@@ -9,4 +9,6 @@ This is code used in the tutorial [Implement JWT Authorization](https://qlik.dev
 ---
 
 
-By authorizing users with JWTs, you can embed analytics from Qlik using your host application's access control model.
+By authorizing users with JWTs, you can embed analytics from Qlik into your own web applications using your host application's access control model.
+
+## Adding authorization to Qlik tenants and web applications using JWTs and JavaScript
