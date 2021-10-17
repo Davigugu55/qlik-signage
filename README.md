@@ -13,6 +13,14 @@ By authorizing users with JWTs, you can embed analytics from Qlik into your own 
 
 ## Adding authorization to Qlik tenants and web applications using JWTs and JavaScript
 
-![JWT icon](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2Fjwt_64px.png?1634489478634)
-![JavaScript icon](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2F64px-JavaScript-logo.png?1634489478633)
-![Qlik logo](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2Fthumbnails%2FQlik-Logo_CMYK_64.png?1634489478670)
+| ![JWT icon](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2Fjwt_64px.png?1634489478634) | ![JavaScript icon](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2F64px-JavaScript-logo.png?1634489478633) | ![Qlik logo](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2Fthumbnails%2FQlik-Logo_CMYK_64.png?1634489478670) |
+| --- | --- | --- |
+
+### Developer Use-Cases
+
+If you are developing apps that integrate analytics, this sample is going to accelerate rendering analytics content based on your use case.
+
+Upon implementing JWT authorization to Qlik, there are a number of ways to add embedded content:
+
+* JavaScript embedded visulization using nebula.js
+* 
