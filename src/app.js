@@ -1,10 +1,14 @@
 import { auth } from './auth.js'
 import { configuration } from './configuration.js'
+import { connectQlikApp } from './connectQlikApp.js'
+import { connectIframe } from './connectIframe.js'
 
 (async () => {
 
-  const { app, config, csrfTokenInfo } =  await auth()
+  const { config, csrfTokenInfo } =  await auth()
   
+  //Embed chart using Nebula.js
+  const { app } = await connectQlikApp(config, csrfTokenInfo)
   // create renderer
   const renderer = window.stardust.embed(app, configuration);
 
@@ -22,9 +26,12 @@ import { configuration } from './configuration.js'
     }
   });
   
-  let iframeSrc = `https://${config.tenantDomain}/single/?appid=${config.appId}&obj=Tsmvffe&opt=ctxmenu,currsel&qlik-web-integration-id=${config.qlikWebIntegrationId}&qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`
+  //embed chart using single API iframe
+  const iframeSrc = connectIframe(config, csrfTokenInfo);
   let iframe = document.createElement("iframe");
   iframe.src = iframeSrc
+  document.querySelector("#iframe").appendChild(iframe)
+  
   let rest = await (await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
   {
     credentials: "include",
@@ -36,6 +43,6 @@ import { configuration } from './configuration.js'
   rest = JSON.stringify(rest, null, 4);
   
   document.querySelector("#rest").innerHTML = rest;
-  document.querySelector("#iframe").appendChild(iframe)
+  
   
 })();

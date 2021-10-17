@@ -64,5 +64,5 @@ export const auth = async () => {
   
   
   
-  return { config, csrfTokenInfo}
+  return { config, csrfTokenInfo }
 }

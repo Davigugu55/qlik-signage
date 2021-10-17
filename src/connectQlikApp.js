@@ -1,6 +1,6 @@
-export const nebConnect = async (config, csrfToken) => {
+export const connectQlikApp = async (config, csrfTokenInfo) => {
   // 4) setup socket connection to Qlik Application
-  const url = `wss://${tenantDomain}/app/${appId}?qlik-web-integration-id=${qlikWebIntegrationId}&qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`;
+  const url = `wss://${config.tenantDomain}/app/${config.appId}?qlik-web-integration-id=${config.qlikWebIntegrationId}&qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`;
   
   
   // 5) fetch schema for communicating with Qlik's engine API
@@ -12,5 +12,7 @@ export const nebConnect = async (config, csrfToken) => {
   const session = window.enigma.create({ schema, url });
   
   // 7) open the app
-  const app = await (await session.open()).openDoc(appId);
+  const app = await (await session.open()).openDoc(config.appId);
+  
+  return { app };
 }
