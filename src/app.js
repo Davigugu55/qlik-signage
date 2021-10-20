@@ -33,10 +33,10 @@ import { connectQlikApp } from './connectQlikApp.js'
   &qlik-web-integration-id=${config.qlikWebIntegrationId}
   &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`;
   
-  let iframe = document.createElement("iframe");
+  let iframe = await document.createElement("iframe");
   iframe.src = iframeSrc;
   iframe.classList.add("iframeStyle");
-  document.querySelector("#iframe").appendChild(iframe);
+  await document.querySelector("#iframe").appendChild(iframe);
   
   //embed response from a REST API
   let rest = await (await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
