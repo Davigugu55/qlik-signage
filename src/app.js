@@ -6,6 +6,9 @@ import { connectQlikApp } from './connectQlikApp.js'
 
   const { config, csrfTokenInfo } =  await auth()
   
+  //add page content
+  let mainTag = document.getElementsByTagName("main");
+  
   //Embed chart using Nebula.js
   // connect to a Qlik Sense application
   const { app } = await connectQlikApp(config, csrfTokenInfo)
