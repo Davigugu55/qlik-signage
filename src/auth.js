@@ -9,12 +9,13 @@ export const auth = async () => {
   // 2) get logged in
   if(currentLoginType === loginTypes.JWT_LOGIN) handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
-  
+  let csrfTokenInfo;
   async function handleAutomaticLogin() {
     const { token } = await fetch("token").then(resp => resp.json()); 
     
     // 2.1) login, in order to save some credentials in browser storage
     //    we are going to need these for next api calls like getting CSRF token
+
     const login = await fetch(
       `https://${tenantDomain}/login/jwt-session?qlik-web-integration-id=${qlikWebIntegrationId}`,
       {
@@ -28,7 +29,11 @@ export const auth = async () => {
         },
         rejectunAuthorized: false
       }
-    );
+    ).then(async response => { if (response.status === 200)
+      {
+        csrfTokenInfo = await getCsrfTokenInfo(config);
+      }
+    });
   }
   
   async function handleUserLogin() {
@@ -48,16 +53,7 @@ export const auth = async () => {
     }
   }
   
-  // 3) get CSRF token
-  const csrfTokenInfo = await fetch(
-    `https://${tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${qlikWebIntegrationId}`,
-    {
-      credentials: "include",
-      headers: {
-        "Qlik-Web-Integration-ID": qlikWebIntegrationId
-      }
-    }
-  );
+  
     
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
@@ -66,3 +62,14 @@ export const auth = async () => {
   
   return { config, csrfTokenInfo }
 }
+
+// 3) get CSRF token
+const getCsrfTokenInfo = async(config) => { await fetch(
+  `https://${config.tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${config.qlikWebIntegrationId}`,
+  {
+    credentials: "include",
+    headers: {
+      "Qlik-Web-Integration-ID": config.qlikWebIntegrationId
+    }
+  })
+};
