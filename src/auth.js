@@ -2,19 +2,20 @@ export const auth = async () => {
   
   const shouldLoginBox = document.querySelector('#should-login-box')
   const loginLink = shouldLoginBox.querySelector('a')
+  
   // 1) get config
-  const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
+  const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await (await fetch("config").then((resp) => resp.json()));
   const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
   // 2) get logged in
   if(currentLoginType === loginTypes.JWT_LOGIN) handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
   
   async function handleAutomaticLogin() {
-    const { token } = await fetch("token").then(resp => resp.json()); 
+    const { token } = await (await fetch("token").then(resp => resp.json())); 
     
     // 2.1) login, in order to save some credentials in browser storage
     //    we are going to need these for next api calls like getting CSRF token
-    const login = await fetch(
+    const login = await (await fetch(
       `https://${tenantDomain}/login/jwt-session?qlik-web-integration-id=${qlikWebIntegrationId}`,
       {
         method: "POST",
@@ -27,8 +28,7 @@ export const auth = async () => {
         },
         rejectunAuthorized: false
       }
-    );
-
+    ));
   }
   
   async function handleUserLogin() {
@@ -48,24 +48,21 @@ export const auth = async () => {
     }
   }
   
-  
+  // 3) get CSRF token
+  const csrfTokenInfo = await await fetch(
+    `https://${tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${qlikWebIntegrationId}`,
+    {
+      credentials: "include",
+      headers: {
+        "Qlik-Web-Integration-ID": qlikWebIntegrationId
+      }
+    }
+  );
     
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
   
   
-  const csrfTokenInfo = await getCsrfTokenInfo(config);
-  return { config , csrfTokenInfo }
-}
-
-// 3) get CSRF token
-async function getCsrfTokenInfo(config) {
-return await fetch(
-  `https://${config.tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${config.qlikWebIntegrationId}`,
-  {
-    credentials: "include",
-    headers: {
-      "Qlik-Web-Integration-ID": config.qlikWebIntegrationId
-    }
-  });  
+  
+  return { config, csrfTokenInfo }
 }
