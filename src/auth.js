@@ -2,20 +2,19 @@ export const auth = async () => {
   
   const shouldLoginBox = document.querySelector('#should-login-box')
   const loginLink = shouldLoginBox.querySelector('a')
-  
+  let { csrfTokenInfo };
   // 1) get config
   const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
   const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
   // 2) get logged in
   if(currentLoginType === loginTypes.JWT_LOGIN) handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
-  let csrfTokenInfo;
+  
   async function handleAutomaticLogin() {
     const { token } = await fetch("token").then(resp => resp.json()); 
     
     // 2.1) login, in order to save some credentials in browser storage
     //    we are going to need these for next api calls like getting CSRF token
-
     const login = await fetch(
       `https://${tenantDomain}/login/jwt-session?qlik-web-integration-id=${qlikWebIntegrationId}`,
       {
@@ -29,11 +28,11 @@ export const auth = async () => {
         },
         rejectunAuthorized: false
       }
-    ).then(async response => { if (response.status === 200)
-      {
-        csrfTokenInfo = await getCsrfTokenInfo(config);
-      }
+    ).then(async() => {
+      csrfTokenInfo = await getCsrfTokenInfo(config);
+      console.log(csrfTokenInfo);
     });
+
   }
   
   async function handleUserLogin() {
