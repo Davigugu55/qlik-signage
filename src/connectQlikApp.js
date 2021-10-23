@@ -10,7 +10,7 @@ export const connectQlikApp = async (config, csrfTokenInfo) => {
   const session = window.enigma.create({ schema, url });
   
   // 7) open the app
-  const app = await await session.open().openDoc(config.appId);
+  const app = await (await session.open().openDoc(config.appId));
   
   return { app };
 }
