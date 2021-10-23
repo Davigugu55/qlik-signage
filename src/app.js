@@ -45,7 +45,7 @@ import { connectQlikApp } from './connectQlikApp.js'
       headers: {
         "Qlik-Web-Integration-ID": config.qlikWebIntegrationId
       }
-  }).json();
+  }).then(response => response.json());
   
   rest = JSON.stringify(rest, null, 4);
   

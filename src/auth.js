@@ -49,7 +49,7 @@ export const auth = async () => {
   }
   
   // 3) get CSRF token
-  const csrfTokenInfo = await fetch(
+  const csrfTokenInfo = await (await fetch(
     `https://${tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${qlikWebIntegrationId}`,
     {
       credentials: "include",
@@ -57,8 +57,7 @@ export const auth = async () => {
         "Qlik-Web-Integration-ID": qlikWebIntegrationId
       }
     }
-  );
-    
+  )); 
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
   
