@@ -39,13 +39,13 @@ import { connectQlikApp } from './connectQlikApp.js'
   document.querySelector("#iframe").appendChild(iframe);
   
   //embed response from a REST API
-  let rest = await (await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
+  let rest = await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
   {
     credentials: "include",
       headers: {
         "Qlik-Web-Integration-ID": config.qlikWebIntegrationId
       }
-  })).json();
+  }).json();
   
   rest = JSON.stringify(rest, null, 4);
   
