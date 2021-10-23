@@ -2,7 +2,6 @@ export const auth = async () => {
   
   const shouldLoginBox = document.querySelector('#should-login-box')
   const loginLink = shouldLoginBox.querySelector('a')
-  let { csrfTokenInfo };
   // 1) get config
   const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
   const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
@@ -28,10 +27,7 @@ export const auth = async () => {
         },
         rejectunAuthorized: false
       }
-    ).then(async() => {
-      csrfTokenInfo = await getCsrfTokenInfo(config);
-      console.log(csrfTokenInfo);
-    });
+    );
 
   }
   
@@ -58,17 +54,18 @@ export const auth = async () => {
   shouldLoginBox.style.display = 'none'
   
   
-  
-  return { config, csrfTokenInfo }
+  const csrfTokenInfo = await getCsrfTokenInfo(config);
+  return { config , csrfTokenInfo }
 }
 
 // 3) get CSRF token
-const getCsrfTokenInfo = async(config) => { await fetch(
+async function getCsrfTokenInfo(config) {
+return await fetch(
   `https://${config.tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${config.qlikWebIntegrationId}`,
   {
     credentials: "include",
     headers: {
       "Qlik-Web-Integration-ID": config.qlikWebIntegrationId
     }
-  })
-};
+  });  
+}
