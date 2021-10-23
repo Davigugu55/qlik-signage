@@ -7,9 +7,16 @@ export const auth = async () => {
   const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
   const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
   // 2) get logged in
-  if(currentLoginType === loginTypes.JWT_LOGIN) handleAutomaticLogin()
+    let csrfTokenInfo;
+  if(currentLoginType === loginTypes.JWT_LOGIN) {
+    handleAutomaticLogin()
+    .then((response) => {
+      console.log(response);
+      csrfTokenInfo = getCsrfToken();
+    })
+  }
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
-  let csrfTokenInfo;
+
   
   async function handleAutomaticLogin() {
     const { token } = await fetch("token").then(resp => resp.json()); 
@@ -29,13 +36,8 @@ export const auth = async () => {
         },
         rejectunAuthorized: false
       }
-    ).then(response => response.json());
-    
-    if(login.status === 200)
-      {
-        csrfTokenInfo = getCsrfToken();
-      }
-    
+    );
+    return login.json();
   }
   
   async function handleUserLogin() {
