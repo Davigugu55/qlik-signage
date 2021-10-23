@@ -7,15 +7,8 @@ export const auth = async () => {
   const { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
   const config = { tenantDomain, qlikWebIntegrationId, appId, currentLoginType, loginTypes };
   // 2) get logged in
-    let csrfTokenInfo;
-  if(currentLoginType === loginTypes.JWT_LOGIN) {
-    handleAutomaticLogin()
-    .then((response) => {
-      console.log(response);
-      csrfTokenInfo = getCsrfToken();
-    })
-  }
-  else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) handleUserLogin()
+  if(currentLoginType === loginTypes.JWT_LOGIN) await handleAutomaticLogin()
+  else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) await handleUserLogin()
 
   
   async function handleAutomaticLogin() {
@@ -37,7 +30,6 @@ export const auth = async () => {
         rejectunAuthorized: false
       }
     );
-    return login.json();
   }
   
   async function handleUserLogin() {
@@ -58,7 +50,6 @@ export const auth = async () => {
   }
   
   // 3) get CSRF token
-  async function getCsrfToken() {
     const csrfTokenInfo = await (await fetch(
     `https://${tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${qlikWebIntegrationId}`,
     {
@@ -68,8 +59,6 @@ export const auth = async () => {
       }
     }
   ));
-    return csrfTokenInfo;
-  }
    
   // 8) if we reached in this step with out any error, try to remove the helper box
   shouldLoginBox.style.display = 'none'
