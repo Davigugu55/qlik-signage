@@ -4,7 +4,8 @@
 > :sparkles: Updated: October 2021<br>
 :sparkles: Published: October 2021
 
-This is code used in the tutorial [Implement JWT Authorization](https://qlik.dev//tutorials/implement-jwt-authorization) on [qlik.dev](https://qlik.dev).
+This example is referenced in the tutorial [Implement JWT Authorization](https://qlik.dev//tutorials/implement-jwt-authorization)
+on [qlik.dev](https://qlik.dev). It is recommended to use this tutorial in combination with this example.
 
 ---
 
@@ -37,6 +38,7 @@ when the solution is embedded. JWT authorization enables users to have a seamles
 ### Qlik Cloud tenant
 
 1. Obtain access to a Qlik Cloud Enterprise tenant with JWT authorization capabilities.
+
 2. Complete the tutorial for [creating signing keys and configuring JWT authorization](https://qlik.dev/tutorials/create-signed-tokens-for-jwt-authorization) on the tenant.
 
 ### Remix this project
@@ -47,7 +49,15 @@ when the solution is embedded. JWT authorization enables users to have a seamles
 
 1. Copy to the clipboard the contents of the private key file generated in step 2
 of the [Qlik Cloud Tenant](#qlik-cloud-tenant) section of this readme.
+
 2. In your remixed project, click on the New File button and in the input field type in `.data/private.key.txt`.
-Paste the private key into the Glitch editor window. This adds the private key to a project directory
-that is not copied during a remix.
-3. Ensure the path and file reference to the private key file is properly reflected in the `token.js
+
+![NewFile](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2Fthumbnails%2F2021-10-24_20-16-32.989.png?1635121033990)
+
+3. Press the Add This File button to have it open in the editor. Paste the private key into the Glitch editor window.
+This adds the private key to a project directory that is not copied during a remix.
+
+![AddThisFile](https://cdn.glitch.me/221a8c3a-1294-4afa-8416-98d7a157298e%2F2021-10-24_20-16-50.737.png?1635121029143)
+
+4. Ensure the path and file reference to the private key file is properly reflected in the `token.js` file
+so your JWT is properly signed.
