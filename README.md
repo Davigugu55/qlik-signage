@@ -61,3 +61,15 @@ This adds the private key to a project directory that is not copied during a rem
 
 4. Ensure the path and file reference to the private key file is properly reflected in the `token.js` file
 so your JWT is properly signed.
+
+### Update environment variables
+
+Update the environment variables in the `.env` section of Glitch, or in the `config.js` file.
+
+- **qlikWebIntegrationId:** This is the include list Id created in your Qlik Cloud tenant. See [Implement JWT Authorization](https://qlik.dev//tutorials/implement-jwt-authorization)
+
+- **tenantDomain:** The domain name for your Qlik Cloud tenant. For example, `mytenanthostname.region.qlikcloud.com`.
+
+- **appId** The UUID (GUID) for the Qlik Sense application with content to embed
+
+- 
