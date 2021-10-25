@@ -39,6 +39,15 @@ when the solution is embedded. JWT authorization enables users to have a seamles
 1. Obtain access to a Qlik Cloud Enterprise tenant with JWT authorization capabilities.
 2. Complete the tutorial for [creating signing keys and configuring JWT authorization](https://qlik.dev/tutorials/create-signed-tokens-for-jwt-authorization) on the tenant.
 
-#### Remix this project
+### Remix this project
 
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/qlik-cloud-jwt)
+
+### Add the private key to the remixed project
+
+1. Copy to the clipboard the contents of the private key file generated in step 2
+of the [Qlik Cloud Tenant](#qlik-cloud-tenant) section of this readme.
+2. In your remixed project, click on the New File button and in the input field type in `.data/private.key.txt`.
+Paste the private key into the Glitch editor window. This adds the private key to a project directory
+that is not copied during a remix.
+3. Ensure the path and file reference to the private key file is properly reflected in the `token.js
