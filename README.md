@@ -70,6 +70,13 @@ Update the environment variables in the `.env` section of Glitch, or in the `con
 
 - **tenantDomain:** The domain name for your Qlik Cloud tenant. For example, `mytenanthostname.region.qlikcloud.com`.
 
-- **appId** The UUID (GUID) for the Qlik Sense application with content to embed
+- **appId:** The UUID (GUID) for the Qlik Sense application with content to embed.
 
-- 
+- **objId:** The object Id for the chart from the Qlik Sense application to embed. This item is required when you 
+use iframe embedding with the [single API}(https://qlik.dev/apis/javascript/single-integrations).
+
+- **issuer:** The issuer value from the JWT configuration in Qlik Cloud. See [creating signing keys and configuring JWT authorization](https://qlik.dev/tutorials/create-signed-tokens-for-jwt-authorization)
+for more information.
+
+- **keyid:** the key id value from the JWT configuration in Qlik Cloud. See [creating signing keys and configuring JWT authorization](https://qlik.dev/tutorials/create-signed-tokens-for-jwt-authorization)
+for more information.
