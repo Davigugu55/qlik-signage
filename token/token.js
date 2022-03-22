@@ -8,6 +8,7 @@ const methods = {
     // kid and issuer have to match with the IDP config and the audience has to be qlik.api/jwt-login-session
 
     const signingOptions = {
+      jti: generateId(8),
       keyid: config.keyid,
       algorithm: "RS256",
       issuer: config.issuer,
