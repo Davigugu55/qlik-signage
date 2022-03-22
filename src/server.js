@@ -6,7 +6,7 @@ const token = require("../token/token");
 const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
-//console.log(token.getKey());
+console.log(__dirname + '/node_modules/@qlik/sdk/dist/');
 app.use('/qliksdk', express.static(__dirname + '/node_modules/@qlik/sdk/dist/'));
 
 app.get("/mashup", (req, res) => {
