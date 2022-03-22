@@ -8,19 +8,14 @@ const methods = {
     // kid and issuer have to match with the IDP config and the audience has to be qlik.api/jwt-login-session
 const Auth = require('@qlik/sdk').default;
 
-    const signingOptions = {
+    const claims = {
       jti: uuidv4(),
       keyid: config.keyid,
       algorithm: "RS256",
       issuer: config.issuer,
       expiresIn: "30s",
       notBefore: '0s',
-      audience: "qlik.api/login/jwt-session"
-    };
-
-    // These are the claims that will be accepted and mapped anything else will be ignored. sub, subtype and name are mandatory.
-    
-    const payload = {
+      audience: "qlik.api/login/jwt-session",
       sub: sub,
       subType: "user",
       name: name,
@@ -29,7 +24,7 @@ const Auth = require('@qlik/sdk').default;
       groups: groups
     };
 
-    const token = Auth.generateSignedToken(payload, key, signingOptions);
+    const token = Auth.generateSignedToken(claims, key);
     return token;
   }
 };
