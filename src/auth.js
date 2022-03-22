@@ -1,6 +1,6 @@
 import { Auth, AuthType } from '../node_modules/@qlik/sdk/qlik.js';
 
-export const auth = async () => {
+export const authy = async () => {
   
   const shouldLoginBox = document.querySelector('#should-login-box')
   const loginLink = shouldLoginBox.querySelector('a')
@@ -12,7 +12,9 @@ export const auth = async () => {
   if(currentLoginType === loginTypes.JWT_LOGIN) await handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) await handleUserLogin()
 
-  
+      // 2.1) login, in order to save some credentials in browser storage
+    //    we are going to need these for next api calls like getting CSRF token
+
   async function handleAutomaticLogin() {
     const config = {
       host: tenantDomain,
@@ -35,22 +37,6 @@ export const auth = async () => {
       } catch (err) {
         console.log(err);
       }
-    // 2.1) login, in order to save some credentials in browser storage
-    //    we are going to need these for next api calls like getting CSRF token
-    const login = await fetch(
-      `https://${tenantDomain}/login/jwt-session?qlik-web-integration-id=${qlikWebIntegrationId}`,
-      {
-        method: "POST",
-        credentials: "include",
-        mode: "cors",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-          "qlik-web-integration-id": qlikWebIntegrationId
-        },
-        rejectunAuthorized: false
-      }
-    );
   }
   
   async function handleUserLogin() {

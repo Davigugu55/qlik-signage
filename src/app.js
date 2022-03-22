@@ -1,4 +1,4 @@
-import { auth } from './auth.js'
+import { authy } from './auth.js'
 import { configuration } from './configuration.js'
 import { connectQlikApp } from './connectQlikApp.js'
 
