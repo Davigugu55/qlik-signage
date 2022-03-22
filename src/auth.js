@@ -1,3 +1,5 @@
+import { Auth, AuthType } from '../node_modules/@qlik/sdk/qlik.js';
+
 export const auth = async () => {
   
   const shouldLoginBox = document.querySelector('#should-login-box')
@@ -5,15 +7,34 @@ export const auth = async () => {
   
   // 1) get config
   const { tenantDomain, qlikWebIntegrationId, appId, objId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
-  const config = { tenantDomain, qlikWebIntegrationId, appId, objId, currentLoginType, loginTypes };
+  const remoteConfig = { tenantDomain, qlikWebIntegrationId, appId, objId, currentLoginType, loginTypes };
   // 2) get logged in
   if(currentLoginType === loginTypes.JWT_LOGIN) await handleAutomaticLogin()
   else if (currentLoginType === loginTypes.INTERACTIVE_LOGIN) await handleUserLogin()
 
   
   async function handleAutomaticLogin() {
-    const { token } = await fetch("token").then(resp => resp.json()); 
-    
+    const config = {
+      host: tenantDomain,
+      authType: AuthType.JWTAuth,
+      webIntegrationId: qlikWebIntegrationId,
+      fetchToken: async () => {
+        return await fetch("token").then(resp => resp.json()); 
+        },
+      };
+      async function start(auth) {
+        await auth.getSessionCookie();
+        await auth.rest('/users/me').then((resp) => {
+          console.log(resp);
+        });
+      }
+      try {
+        const auth = new Auth(config);
+        console.log(auth);
+        start(auth);
+      } catch (err) {
+        console.log(err);
+      }
     // 2.1) login, in order to save some credentials in browser storage
     //    we are going to need these for next api calls like getting CSRF token
     const login = await fetch(
@@ -65,12 +86,12 @@ export const auth = async () => {
   
   
   
-  return { config, csrfTokenInfo }
+  return { remoteConfig, csrfTokenInfo }
 }
 
 /*
 
-import { Auth, AuthType } from '../node_modules/@qlik/sdk/qlik.js';
+
 
 const config = {
   host: 'your-tenant',
