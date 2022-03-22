@@ -67,3 +67,36 @@ export const auth = async () => {
   
   return { config, csrfTokenInfo }
 }
+
+/*
+
+import { Auth, AuthType } from '../node_modules/@qlik/sdk/qlik.js';
+
+const config = {
+  host: 'your-tenant',
+  authType: AuthType.JWTAuth,
+  webIntegrationId: 'webIntegration...',
+  fetchToken: () => {
+    return fetch('your_backend/serverless/token')
+      .then((resp) => resp.json())
+      .then((res) => res.token);
+    },
+  };
+  async function start(auth) {
+    await auth.getSessionCookie();
+    await auth.rest('/users/me').then((resp) => {
+      console.log(resp);
+    });
+  }
+  try {
+    const auth = new Auth(config);
+    console.log(auth);
+    start(auth);
+  } catch (err) {
+    console.log(err);
+  }
+
+
+
+
+*/
