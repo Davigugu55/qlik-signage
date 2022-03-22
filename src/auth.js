@@ -1,4 +1,4 @@
-import { Auth, AuthType } from '../node_modules/@qlik/sdk/qlik.js';
+import { Auth, AuthType } from './qliksdk/qlik.js';
 
 export const authy = async () => {
   

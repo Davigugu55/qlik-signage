@@ -4,7 +4,7 @@ import { connectQlikApp } from './connectQlikApp.js'
 
 (async () => {
 
-  const { config, csrfTokenInfo } =  await auth()
+  const { config, csrfTokenInfo } =  await authy()
   
   //add page content
   let mainTag = document.getElementsByTagName("main");
