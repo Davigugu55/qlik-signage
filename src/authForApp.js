@@ -1,4 +1,4 @@
-const { Auth, AuthType } = require("@qlik/sdk");
+import { Auth, AuthType } from "./qliksdk/qlik.js";
 
 export const authy = async () => {
   const shouldLoginBox = document.querySelector("#should-login-box");

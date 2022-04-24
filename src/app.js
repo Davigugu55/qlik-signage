@@ -1,6 +1,6 @@
-const { authy } = require('./authForApp.js');
-const { configuration } = require('./configuration.js');
-const { connectQlikApp } = require('./connectQlikApp.js');
+import { authy } from './authForApp.js'
+import { configuration } from './configuration.js'
+import { connectQlikApp } from './connectQlikApp.js'
 
 (async () => {
 
