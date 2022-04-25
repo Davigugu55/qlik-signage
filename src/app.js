@@ -1,10 +1,10 @@
-import { authy } from './authForApp.js'
+import { auth } from './auth.js'
 import { configuration } from './configuration.js'
 import { connectQlikApp } from './connectQlikApp.js'
 
 (async () => {
 
-  const { config, csrfTokenInfo } =  await authy()
+  const { config, csrfTokenInfo } =  await auth()
   
   //add page content
   let mainTag = document.getElementsByTagName("main");

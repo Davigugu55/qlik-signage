@@ -6,7 +6,7 @@ const token = require("../token/token");
 const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
-app.use('/qliksdk', express.static('node_modules/@qlik/sdk/dist'));
+//console.log(token.getKey());
 
 app.get("/mashup", (req, res) => {
   let mashFile = fs.readFileSync("./src/index.html", "utf8");
