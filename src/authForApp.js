@@ -1,4 +1,4 @@
-import { Auth, AuthType } from "./qliksdk/qlik.js";
+import { Auth, AuthType } from "./qliksdk/mjs/qlik.js";
 
 export const authy = async () => {
   const shouldLoginBox = document.querySelector("#should-login-box");
