@@ -21,7 +21,7 @@ const methods = {
     // These are the claims that will be accepted and mapped anything else will be ignored. sub, subtype and name are mandatory.
     
     const payload = {
-      jti: uuidv4(),
+      jti: uuidv4().toString(),
       sub: sub,
       subType: "user",
       name: name,
