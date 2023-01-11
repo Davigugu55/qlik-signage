@@ -14,14 +14,14 @@ const methods = {
       algorithm: "RS256",
       issuer: config.issuer,
       expiresIn: "30s",
-      notBefore: "0s",
+      notBefore: "1s",
       audience: "qlik.api/login/jwt-session"
     };
 
     // These are the claims that will be accepted and mapped anything else will be ignored. sub, subtype and name are mandatory.
     
     const payload = {
-      jti: uuidv4().toString(),
+      jti: uuidv4(),
       sub: sub,
       subType: "user",
       name: name,
