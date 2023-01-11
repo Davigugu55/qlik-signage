@@ -4,7 +4,7 @@ export const connectQlikApp = async (config, csrfTokenInfo) => {
   
   
   // 5) fetch schema for communicating with Qlik's engine API
-  const schema = await fetch("https://unpkg.com/enigma.js/schemas/12.936.0.json").then(response => response.json());
+  const schema = await fetch("https://cdn.jsdelivr.net/enigma.js/schemas/12.936.0.json").then(response => response.json());
   
   // 6) create qlik engine session
   const session = window.enigma.create({ schema, url });
