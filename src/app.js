@@ -29,7 +29,7 @@ import { connectQlikApp } from './connectQlikApp.js'
   });
   
   //embed chart using single API iframe
-  let iframeSrc = `https://${config.tenantDomain}/single/?appid=${config.appId}&obj=${config.objId}&opt=ctxmenu,currsel
+  let iframeSrc = `https://${config.tenantDomain}/single/?appid=${config.appId}&obj=Tsmvffe&opt=ctxmenu,currsel
   &qlik-web-integration-id=${config.qlikWebIntegrationId}
   &qlik-csrf-token=${csrfTokenInfo.headers.get("qlik-csrf-token")}`;
   

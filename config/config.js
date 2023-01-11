@@ -11,7 +11,6 @@ module.exports = {
   qlikWebIntegrationId: process.env.qlikWebIntegrationId,
   tenantDomain: process.env.tenantDomain,
   appId: process.env.appId,
-  objId: process.env.objId,
   
   // token config
   issuer: process.env.issuer,
