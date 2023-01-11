@@ -1,6 +1,7 @@
 const jsonWebToken = require("jsonwebtoken");
 const fs = require("fs");
 const config = require("../config/config");
+const { v4: uuidv4 } = require("uuid");
 
 const key = fs.readFileSync(".data/private.key.txt", "utf8");
 const methods = {
@@ -12,12 +13,14 @@ const methods = {
       algorithm: "RS256",
       issuer: config.issuer,
       expiresIn: "30s",
+      notBefore: "1s",
       audience: "qlik.api/login/jwt-session"
     };
 
     // These are the claims that will be accepted and mapped anything else will be ignored. sub, subtype and name are mandatory.
     
     const payload = {
+      jti: uuid
       sub: sub,
       subType: "user",
       name: name,
