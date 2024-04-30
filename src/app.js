@@ -38,7 +38,7 @@ import { connectQlikApp } from './connectQlikApp.js'
   iframe.classList.add("iframeStyle");
   document.querySelector("#iframe").appendChild(iframe);
   
-  //embed response from a REST API
+//   embed response from a REST API
   let rest = await fetch(`https://${config.tenantDomain}/api/v1/users/me`,
   {
     credentials: "include",
