@@ -10,8 +10,14 @@
     "start": "nodemon src/server.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
+=======
+    "body-parser": "1.19.0",
+    "dotenv": "^16.4.5",
+    "express": "4.17.1",
+>>>>>>> a03213f (Update Code)
     "jsonwebtoken": "8.5.1",
     "path": "0.12.7",
     "uuid": "^8.3.2"

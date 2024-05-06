@@ -8,11 +8,11 @@ module.exports = {
   currentLoginType: loginTypes.JWT_LOGIN,
   
   // app config 
-  qlikWebIntegrationId: process.env.qlikWebIntegrationId,
-  tenantDomain: process.env.tenantDomain,
-  appId: process.env.appId,
+  qlikWebIntegrationId: process.env.QLIKWEBINTEGRATIONID,
+  tenantDomain: process.env.TENANTDOMAIN,
+  appId: process.env.APPID,
   
   // token config
-  issuer: process.env.issuer,
-  keyid: process.env.keyid
+  issuer: process.env.ISSUER,
+  keyid: process.env.KEYID
 };

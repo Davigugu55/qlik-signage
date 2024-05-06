@@ -1,3 +1,5 @@
+require('dotenv').config(); // This line loads the environment variables from the .env file
+
 const express = require("express");
 const app = express();
 const fs = require("fs");
@@ -21,10 +23,10 @@ app.get("/config", (req, res) => {
 
 app.get("/token", (req, res) => {
   const uuid = uuidv4();
-  const sub = `${process.env.userStub}_${uuid}`;
+  const sub = `${process.env.USERSTUB}_${uuid}`;
   const name = sub;
   const email = `${uuid}@anonymoususer.anon`;
-  const groups = [process.env.group];
+  const groups = [process.env.GROUP];
   
   const genT = token.generate(sub, name, email, groups);
   res.json({ token: genT });
