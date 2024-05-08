@@ -6,6 +6,7 @@ This is a fork from: https://glitch.com/~qlik-cloud-jwt
 * Added .env vars to select application sheet and theme
 * Some adjustements to JWT user params
 * ``/fullscreen.html`` page to display full page application iframe
+* Changed http to https: Qlik iframes requires that for iframe-ancestors 
 
 ---
 
