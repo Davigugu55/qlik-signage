@@ -1,27 +1,16 @@
-require('dotenv').config();
+require('dotenv').config(); // This line loads the environment variables from the .env file
+
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const https = require('https');
 const config = require("../config/config");
 const token = require("../token/token");
-const favicon = require('serve-favicon');
-const path = require('path');
 const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
 
-// Serve your favicon - adjust the path as necessary
-app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
-
 app.get("/mashup", (req, res) => {
   let mashFile = fs.readFileSync("./src/index.html", "utf8");
-  res.write(mashFile);
-  res.end();
-});
-
-app.get("/fullscreen", (req, res) => {
-  let mashFile = fs.readFileSync("./src/fullscreen.html", "utf8");
   res.write(mashFile);
   res.end();
 });
@@ -48,13 +37,5 @@ app.get("/theme/:name", (req, res) => {
   res.end();
 });
 
-// SSL server options
-const options = {
-  key: fs.readFileSync('.data/server.key'),
-  cert: fs.readFileSync('.data/server.cert')
-};
-
-// Creating HTTPS server
-https.createServer(options, app).listen(8080, () => {
-  console.log('HTTPS Server running on port 8080');
-});
+//create a server object:
+app.listen(8080); //the server object listens on port 8080
