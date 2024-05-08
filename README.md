@@ -1,10 +1,15 @@
 # "Authorize Users with JWTs for Qlik Embedded" - Authorization and Embedding Examples
 
+This is a fork from: https://glitch.com/~qlik-cloud-jwt
 
-> :sparkles: Updated: October 2021<br>
-:sparkles: Published: October 2021
+* Removed Nebula.js rendering
+* Added .env vars to select application sheet and theme
+* Some adjustements to JWT user params
+* ``/fullscreen.html`` page to display full page application iframe
 
-This is code used in the tutorial [Implement JWT Authorization](https://qlik.dev//tutorials/implement-jwt-authorization) on [qlik.dev](https://qlik.dev).
+---
+
+This is code used in the tutorial [Implement JWT Authorization](https://qlik.dev/tutorials/implement-jwt-authorization) on [qlik.dev](https://qlik.dev).
 
 ---
 
@@ -22,7 +27,6 @@ If you are developing apps that integrate analytics, this sample is going to acc
 
 Upon implementing JWT authorization to Qlik, there are a number of ways to add embedded content:
 
-* JavaScript embedded visualization using nebula.js
 * iframe embedded visualization using the single API
 * Connect to REST endpoints when you need to in your web application front-end
 
