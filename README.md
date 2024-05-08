@@ -38,7 +38,3 @@ when the solution is embedded. JWT authorization enables users to have a seamles
 
 1. Obtain access to a Qlik Cloud Enterprise tenant with JWT authorization capabilities.
 2. Complete the tutorial for [creating signing keys and configuring JWT authorization](https://qlik.dev/tutorials/create-signed-tokens-for-jwt-authorization) on the tenant.
-
-#### Remix this project
-
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/qlik-cloud-jwt)

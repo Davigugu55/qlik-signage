@@ -5,14 +5,9 @@ const fs = require("fs");
 const https = require('https');
 const config = require("../config/config");
 const token = require("../token/token");
-const favicon = require('serve-favicon');
-const path = require('path');
 const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
-
-// Serve your favicon - adjust the path as necessary
-app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 
 app.get("/mashup", (req, res) => {
   let mashFile = fs.readFileSync("./src/index.html", "utf8");
