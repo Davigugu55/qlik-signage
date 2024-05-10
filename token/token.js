@@ -2,8 +2,11 @@
 const jsonWebToken = require("jsonwebtoken");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
+const path = require('path');
 
-const key = fs.readFileSync(".data/privatekey.pem", "utf8");
+
+// const key = fs.readFileSync(".data/privatekey.pem", "utf8");
+const key = fs.readFileSync(path.join(__dirname, '..', '.data', 'privatekey.pem'), "utf8");
 
 const methods = {
   generate: function (sub, name, email, groups = []) {

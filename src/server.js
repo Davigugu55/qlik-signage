@@ -15,8 +15,8 @@ app.get("/mashup", (req, res) => {
   res.end();
 });
 
-app.get("/fullscreen", (req, res) => {
-  let mashFile = fs.readFileSync("./src/fullscreen.html", "utf8");
+app.get("/teste", (req, res) => {
+  let mashFile = fs.readFileSync("./src/test.html", "utf8");
   res.write(mashFile);
   res.end();
 });
@@ -45,11 +45,11 @@ app.get("/theme/:name", (req, res) => {
 
 // SSL server options
 const options = {
-  key: fs.readFileSync('.data/server.key'),
-  cert: fs.readFileSync('.data/server.cert')
+  key: fs.readFileSync('/etc/letsencrypt/live/signage.rumoon.com.br/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/signage.rumoon.com.br/fullchain.pem')
 };
 
 // Creating HTTPS server
-https.createServer(options, app).listen(8080, () => {
+https.createServer(options, app).listen(8080, '0.0.0.0', () => {
   console.log('HTTPS Server running on port 8080');
 });
