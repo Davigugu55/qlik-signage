@@ -31,12 +31,6 @@ app.get("/token", (req, res) => {
   res.json({ token: genT });
 });
 
-app.get("/theme/:name", (req, res) => {
-  let themeFile = fs.readFileSync(`./themes/${req.params.name}.json`);
-  res.json({ theme: JSON.parse(themeFile) });
-  res.end();
-});
-
 // SSL server options
 const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/signage.rumoon.com.br/privkey.pem'),
