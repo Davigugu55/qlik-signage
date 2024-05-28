@@ -32,23 +32,6 @@ export const auth = async () => {
     );
   }
   
-  async function handleUserLogin() {
-    const response = await fetch(`https://${tenantDomain}/api/v1/csrf-token`, {
-      credentials: 'include',
-      headers: { 'qlik-web-integration-id': qlikWebIntegrationId }
-    })
-    
-    if(response.status === 401) {
-      shouldLoginBox.style.display = 'block'
-    
-      const loginUrl = new URL(`https://${tenantDomain}/login`);
-      loginUrl.searchParams.append('returnto', window.location.href);
-      loginUrl.searchParams.append('qlik-web-integration-id', qlikWebIntegrationId);
-
-      loginLink.href = loginUrl.href;
-    }
-  }
-  
   // 3) get CSRF token
     const csrfTokenInfo = await (await fetch(
     `https://${tenantDomain}/api/v1/csrf-token?qlik-web-integration-id=${qlikWebIntegrationId}`,

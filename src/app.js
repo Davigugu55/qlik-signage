@@ -1,32 +1,8 @@
 import { auth } from './auth.js'
-import { configuration } from './configuration.js'
-import { connectQlikApp } from './connectQlikApp.js'
 
 (async () => {
 
   const { config, csrfTokenInfo } =  await auth()
-  
-  //add page content
-  let mainTag = document.getElementsByTagName("main");
-  
-  // //Embed chart using Nebula.js
-  // // connect to a Qlik Sense application
-  // const { app } = await connectQlikApp(config, csrfTokenInfo)
-  // // create renderer
-  // const renderer = window.stardust.embed(app, configuration);
-  // // render toolbar
-  // (await renderer.selections()).mount(document.querySelector(".toolbar"));
-  
-  // // render chart
-  // renderer.render({
-  //   type: 'bar-chart',
-  //   element: document.querySelector("#bar"),
-  //   fields: ["title", '=Avg(revenue)'],
-  //   properties: {
-  //     title: "Nebula Bar Chart example",
-  //     subtitle: "This example shows data fetched from a Qlik app rendered as a bar chart using Nebula."
-  //   }
-  // });
   
   //embed chart using single API iframe
   let iframeSrc = `https://${config.tenantDomain}/single/?appid=${config.appId}&sheet=${config.sheetId}&theme=${config.theme}&opt=ctxmenu,currsel
