@@ -9,6 +9,12 @@ const { v4: uuidv4 } = require("uuid");
 
 app.use(express.static(__dirname));
 
+app.get("/app", (req, res) => {
+  let mashFile = fs.readFileSync("./src/template.html", "utf8");
+  res.write(mashFile);
+  res.end();
+});
+
 app.get("/teste", (req, res) => {
   let mashFile = fs.readFileSync("./src/test.html", "utf8");
   res.write(mashFile);
