@@ -27,8 +27,7 @@ app.get("/config", (req, res) => {
 });
 
 app.get("/token", (req, res) => {
-  const uuid = uuidv4();
-  const sub = `${process.env.USERSTUB}_${uuid}`;
+  const sub = process.env.USERSTUB;
   const email = process.env.USERSTUB;
   const name = process.env.USERDISPLAYNAME;
   const groups = [process.env.GROUP];
